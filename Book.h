@@ -1,4 +1,9 @@
 #include <cstring>
+// Name:         Thuy Nguyen
+// Program:      CSC 275 Program 3
+// Due Date:     11/09/24
+// Compiler:     Code Block
+// This is the main program file, which provides the user interface and integrates the Book and Member classes.
 
 class Book {
 private:
