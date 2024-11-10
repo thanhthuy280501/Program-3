@@ -1,5 +1,11 @@
 #include "Member.h" // Include your Member class header
 
+// Name:         Thuy Nguyen
+// Program:      CSC 275 Program 3
+// Due Date:     11/09/24
+// Compiler:     Code Block
+// This is the main program file, which provides the user interface and integrates the Book and Member classes.
+
 // Function to read members from a file
 void readMembersFromFile(const std::string& filename, Member*& members, int& memberCount) {
     std::ifstream inFile(filename);
