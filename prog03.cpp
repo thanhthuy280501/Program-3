@@ -2,6 +2,13 @@
 #include "Book.h"
 #include "Member.h"
 
+// Name:         Thuy Nguyen
+// Program:      CSC 275 Program 3
+// Due Date:     11/09/24
+// Compiler:     Code Block
+// This is the main program file, which provides the user interface and integrates the Book and Member classes.
+
+
 // Include or implement the I/O functions here or include a header file with these functions
 // Declarations of the functions you implemented
 void readBooksFromFile(const std::string& filename, Book*& books, int& bookCount);
