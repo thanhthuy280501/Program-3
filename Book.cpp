@@ -3,6 +3,12 @@
 #include <string>
 #include "Book.h" // Include your Book class header
 
+// Name:         Thuy Nguyen
+// Program:      CSC 275 Program 3
+// Due Date:     11/09/24
+// Compiler:     Code Block
+// This is the main program file, which provides the user interface and integrates the Book and Member classes.
+
 // Function to read books from a file
 void readBooksFromFile(const std::string& filename, Book*& books, int& bookCount) {
     std::ifstream inFile(filename);
