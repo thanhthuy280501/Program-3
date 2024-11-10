@@ -3,6 +3,13 @@
 #include "Member.h"
 
 // Include or implement the I/O functions here or include a header file with these functions
+// Declarations of the functions you implemented
+void readBooksFromFile(const std::string& filename, Book*& books, int& bookCount);
+void writeBooksToFile(const std::string& filename, Book* books, int bookCount);
+void readMembersFromFile(const std::string& filename, Member*& members, int& memberCount);
+void writeMembersToFile(const std::string& filename, Member* members, int memberCount);
+int recursiveBinarySearch(Book* books, int left, int right, const std::string& isbn);
+void sortBooksByISBN(Book* books, int count);
 
 int main(int argc, char* argv[]) {
     if (argc < 5) {
@@ -25,18 +32,35 @@ int main(int argc, char* argv[]) {
     readBooksFromFile(libraryInFile, library, bookCount);
     readMembersFromFile(memberInFile, members, memberCount);
 
+    // Interactive commands
+    std::string command;
+    while (true) {
+        std::cout << "Enter a command (sortlibrary, search, exit): ";
+        std::cin >> command;
+
+        if (command == "sortlibrary") {
+            sortBooksByISBN(library, bookCount);
+            std::cout << "Library sorted by ISBN.\n";
+        } else if (command == "search") {
+            std::string isbn;
+            std::cout << "Enter ISBN to search: ";
+            std::cin >> isbn;
+            int index = recursiveBinarySearch(library, 0, bookCount - 1, isbn);
+            if (index != -1) {
+                std::cout << "Book found: " << library[index].getTitle() << " by " << library[index].getAuthor() << std::endl;
+            } else {
+                std::cout << "Book not found.\n";
+            }
+        } else if (command == "exit") {
+            break;
+        } else {
+            std::cout << "Unknown command.\n";
+        }
+    }
+
     // Program logic (commands and interactions)
 
-    // Save data to files before exiting
-    writeBooksToFile(libraryOutFile, library, bookCount);
-    writeMembersToFile(memberOutFile, members, memberCount);
-
-    // Clean up dynamically allocated memory
-    delete[] library;
-    delete[] members;
-
-    
-int recursiveBinarySearch(Book* books, int left, int right, const std::string& isbn) {
+    int recursiveBinarySearch(Book* books, int left, int right, const std::string& isbn) {
     if (left > right) {
         return -1; // Base case: not found
     }
@@ -60,6 +84,20 @@ void sortBooksByISBN(Book* books, int count) {
         }
     }
 }
+
+    // Save data to files before exiting
+    writeBooksToFile(libraryOutFile, library, bookCount);
+    writeMembersToFile(memberOutFile, members, memberCount);
+
+    // Clean up dynamically allocated memory
+    delete[] library;
+    delete[] members;
+
+    return 0;
+}
+
+    
+
 
     return 0;
 }
