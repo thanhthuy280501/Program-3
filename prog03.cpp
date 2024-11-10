@@ -35,6 +35,32 @@ int main(int argc, char* argv[]) {
     delete[] library;
     delete[] members;
 
+    
+int recursiveBinarySearch(Book* books, int left, int right, const std::string& isbn) {
+    if (left > right) {
+        return -1; // Base case: not found
+    }
+
+    int mid = left + (right - left) / 2;
+
+    if (books[mid].getISBN() == isbn) {
+        return mid; // Found
+    } else if (books[mid].getISBN() > isbn) {
+        return recursiveBinarySearch(books, left, mid - 1, isbn); // Search left
+    } else {
+        return recursiveBinarySearch(books, mid + 1, right, isbn); // Search right
+    }
+}
+void sortBooksByISBN(Book* books, int count) {
+    for (int i = 0; i < count - 1; ++i) {
+        for (int j = 0; j < count - i - 1; ++j) {
+            if (books[j].getISBN() > books[j + 1].getISBN()) {
+                std::swap(books[j], books[j + 1]);
+            }
+        }
+    }
+}
+
     return 0;
 }
 
